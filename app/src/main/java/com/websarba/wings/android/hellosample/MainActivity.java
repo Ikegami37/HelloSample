@@ -18,14 +18,26 @@ public class MainActivity extends AppCompatActivity {
         Button btClick = findViewById(R.id.btClick);
         HelloListener listener = new HelloListener();
         btClick.setOnClickListener(listener);
+
+        Button btClear = findViewById(R.id.btClear);
+        btClear.setOnClickListener(listener);
     }
     private class HelloListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
             EditText input = findViewById(R.id.etName);
             TextView output = findViewById(R.id.tvOutput);
-            String inputStr = input.getText().toString();
-            output.setText(inputStr + "さん、こんにちわ！");
+            int id = view.getId();
+            switch(id) {
+                case R.id.btClick:
+                    String inputStr = input.getText().toString();
+                    output.setText(inputStr + "さん、こんにちわ！");
+                    break;
+                case R.id.btClear:
+                    input.setText("");
+                    output.setText("");
+                    break;
+            }
         }
     }
 }
